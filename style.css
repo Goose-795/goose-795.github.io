@@ -28,6 +28,7 @@ body {
   background: #f980a1;
   height: 30vmin;
   width: 47.9vmin;
+  overflow: hidden; /* Add this to hide overflowing content */
 }
 
 .card {
@@ -40,13 +41,16 @@ body {
   justify-content: center;
   align-items: center;
   left: 2.5vmin;
-  top: 0vmin;
+  top: 30vmin; /* Start hidden below the envelope */
   animation: slide-rev 0.2s ease-out;
+  transition: top 0.5s ease-out; /* Add smooth transition */
 }
 
 .message {
   position: absolute;
   top: 5vmin;
+  opacity: 0; /* Start hidden */
+  transition: opacity 0.5s ease-out; /* Add fade-in effect */
 }
 
 .cover {
@@ -99,9 +103,12 @@ body {
 }
 
 .container:hover .card {
-  animation: slide 0.2s;
-  animation-delay: 0.5s;
-  animation-fill-mode: forwards;
+  top: 0vmin; /* Move card up to reveal message */
+  animation: none; /* Disable the slide animation */
+}
+
+.container:hover .message {
+  opacity: 1; /* Fade in the message */
 }
 
 .shadow {
@@ -127,7 +134,7 @@ body {
   position: absolute;
   content: "";
   left: 2.5vmin;
-  top: 7vim;
+  top: 7vmin; /* Fixed typo (changed "7vim" to "7vmin") */
   width: 2.5vmin;
   height: 4vmin;
   background: #f40b4a;
